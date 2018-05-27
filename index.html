@@ -6,10 +6,92 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="authors" content="Joshua Wilson" />
   <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Using icons from fontaweseome.com -->
 </head>
 <body>
   <main>
-
+    <h1>Memory Game</h1>
+    <p>
+      &#x2606;
+      &#x2606;
+      &#x2606;
+      <input id="moveCounter" type="number" value="0" />
+      Moves
+      <i id="resetButton" class="fa fa-refresh" aria-hidden="true"></i>
+    </p>
+    <!-- The grid will have four rows and four columns -->
+    <div id="gameContainer">
+      <!-- Start of row one -->
+      <div class="gameCard"></div>
+      <div class="gameCard hiddenCard">
+        <i class="fa fa-gamepad" aria-hidden="true"></i>
+      </div>
+      <div class="gameCard"></div>
+      <div class="gameCard hiddenCard">
+        <i class="fa fa-gamepad" aria-hidden="true"></i>
+      </div>
+      <div class="gameCard"></div>
+      <div class="gameCard hiddenCard">
+        <i class="fa fa-futbol-o" aria-hidden="true"></i>
+      </div>
+      <div class="gameCard"></div>
+      <div class="gameCard hiddenCard">
+        <i class="fa fa-futbol-o" aria-hidden="true"></i>
+      </div>
+      <!-- End of row one, start of row two -->
+      <div class="gameCard"></div>
+      <div class="gameCard hiddenCard">
+        <i class="fa fa-trophy" aria-hidden="true"></i>
+      </div>
+      <div class="gameCard"></div>
+      <div class="gameCard hiddenCard">
+        <i class="fa fa-trophy" aria-hidden="true"></i>
+      </div>
+      <div class="gameCard"></div>
+      <div class="gameCard hiddenCard">
+        <i class="fa fa-university" aria-hidden="true"></i>
+      </div>
+      <div class="gameCard"></div>
+      <div class="gameCard hiddenCard">
+        <i class="fa fa-university" aria-hidden="true"></i>
+      </div>
+      <!-- End of row two, start of row three -->
+      <div class="gameCard"></div>
+      <div class="gameCard hiddenCard">
+        <i class="fa fa-rocket" aria-hidden="true"></i>
+      </div>
+      <div class="gameCard"></div>
+      <div class="gameCard hiddenCard">
+        <i class="fa fa-rocket" aria-hidden="true"></i>
+      </div>
+      <div class="gameCard"></div>
+      <div class="gameCard hiddenCard">
+        <i class="fa fa-plane" aria-hidden="true"></i>
+      </div>
+      <div class="gameCard"></div>
+      <div class="gameCard hiddenCard">
+        <i class="fa fa-plane" aria-hidden="true"></i>
+      </div>
+      <!-- End of row three, start of row four -->
+      <div class="gameCard"></div>
+      <div class="gameCard hiddenCard">
+        <i class="fa fa-cog" aria-hidden="true"></i>
+      </div>
+      <div class="gameCard"></div>
+      <div class="gameCard hiddenCard">
+        <i class="fa fa-cog" aria-hidden="true"></i>
+      </div>
+      <div class="gameCard"></div>
+      <div class="gameCard hiddenCard">
+        <i class="fa fa-cube" aria-hidden="true"></i>
+      </div>
+      <div class="gameCard"></div>
+      <div class="gameCard hiddenCard">
+        <i class="fa fa-cube" aria-hidden="true"></i>
+      </div>
+      <!-- End of grid -->
+    </div>
   </main>
 </body>
 <script src="javascript/gameApp.js"></script>
