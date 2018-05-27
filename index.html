@@ -16,7 +16,7 @@
       &#x2606;
       &#x2606;
       &#x2606;
-      <input id="moveCounter" type="number" value="0" />
+      <input id="moveCounter" type="number" value="0" disabled />
       Moves
       <i id="resetButton" class="fa fa-refresh" aria-hidden="true"></i>
     </p>
@@ -93,6 +93,12 @@
       <!-- End of grid -->
     </div>
   </main>
+  <div id="winnerContent">
+    <h2>Congratulations!</h2>
+    <h3>You Won!</h3>
+    <p>You won the game in: <input type="number" value="0" disabled /> Moves.</p>
+    <button>Play Again</button>
+  </div>
 </body>
 <script src="javascript/gameApp.js"></script>
 </html>
