@@ -12,6 +12,10 @@ input {
   width: 10px;
 }
 
+h1 {
+  font-family: 'Press Start 2P', cursive;
+}
+
 button {
   color: white;
   height: 30px;
@@ -68,4 +72,39 @@ main {
   width: 100%;
   padding-top: 50%;
   display: none;
+}
+
+/* Styling for ipad and similar devices */
+@media screen and (min-width: 426px) {
+
+  body {
+    font-size: 20pt;
+  }
+
+  main {
+    max-height: 700px;
+    max-width: 600px;
+    margin: auto;
+    padding-top: 10%;
+  }
+
+  input {
+    font-size: 20pt;
+    width: 30px;
+  }
+
+  #gameContainer {
+    background-image: linear-gradient(45deg, rgba(255,215,0, 0.9), rgba(137, 207, 240, 0.9));
+    margin-bottom: 100px;
+  }
+
+  .gameCard {
+    min-height: 100px;
+  }
+
+  /* Styling for Post Game  */
+
+  #winnerContent {
+    padding-top: 10%;
+  }
 }
