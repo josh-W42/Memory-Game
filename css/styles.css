@@ -57,12 +57,9 @@ main {
   background-color: slategrey;
 }
 
-.hiddenCard {
-  display: none;
-  background-color: lavender;
-}
-.hiddenCard i {
+.gameCard i {
   margin-top: 30%;
+  display: none;
 }
 
 /* Styling for Post Game  */
