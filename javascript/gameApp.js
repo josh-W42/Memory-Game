@@ -27,7 +27,7 @@ function setGame() {
   // Mainly just adds event listeners, called every game reset or intialization.
   let game = document.querySelector('#gameContainer');
   let playButtonStartGame = document.querySelectorAll('button')[0];
-  let playButtonEndGame = document.querySelectorAll('button')[1];
+  let playButtonEndGame = document.querySelectorAll('button')[2];
   let reset = document.querySelector('#resetButton');
   game.addEventListener('click', gameClick);
   playButtonStartGame.addEventListener('click', runGame)
@@ -57,7 +57,8 @@ function gameClick(e) {
   }
   if(document.querySelectorAll('.correctCards').length === 16) {
     document.querySelector('main').style.display = 'none';
-    document.querySelector('#winnerContent').style.display = 'block';
+    document.querySelector('#modalTrigger').click();
+    document.querySelector('main').style.display = 'none';
     document.querySelector('.starCounter').value = starCount();
     document.querySelector('#timer').value = minutes + ":" + doubleDSeconds + "" + singleDSeconds;
   }
@@ -139,7 +140,6 @@ function playAgain() {
   resetGame();
   // Reseting the display.
   document.querySelector('main').style.display = 'block';
-  document.querySelector('#winnerContent').style.display = 'none';
 }
 
 function resetGame() {

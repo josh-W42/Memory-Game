@@ -7,7 +7,10 @@
   <meta name="authors" content="Joshua Wilson" />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
   <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
   <main>
@@ -83,11 +86,25 @@
       </div>
     </div>
   </main>
-  <div id="winnerContent">
-    <h2>Congratulations!</h2>
-    <h3>You Won!</h3>
-    <p>You won the game in a time of <input id="timer" type="datetime" value="0" disabled /> and with <input class="starCounter" type="number" value="0" disabled /> star pieces left.</p>
-    <button>Play Again</button>
+  <div id="modal" class="container">
+    <!-- Button trigger modal -->
+    <button id="modalTrigger" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"></button>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Congratulations! You Won!</h4>
+          </div>
+          <div class="modal-body">
+            <p>You won the game in a time of <input id="timer" type="datetime" value="0" disabled /> and with <input class="starCounter" type="number" value="0" disabled /> star pieces left.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Play Again</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 <script src="javascript/gameApp.js"></script>
