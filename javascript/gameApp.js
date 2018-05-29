@@ -207,6 +207,7 @@ function addTime() {
 
 
 function resetTimer() {
+  // resets all data related to the timer.
   document.querySelector('.timer').value = "0:00";
   singleDSeconds = 0;
   doubleDSeconds = 0;
@@ -215,7 +216,7 @@ function resetTimer() {
 }
 
 function runGame() {
-  // Mainly just adds event listeners, called every game reset or intialization.
+  // Stars the timer; Displays all cards and removes starting game message.
   document.querySelector('#gameStartScreen').style.display = 'none';
   let allCards = document.querySelectorAll('.gameCard');
   for (let card of allCards) {
