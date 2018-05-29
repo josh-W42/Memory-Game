@@ -100,7 +100,7 @@ function checkCards(selectedCards) {
 
 function starCount() {
   // Primarily used at end of game for displaying star numbers
-  let stars = 0;
+  let stars = 1;
   let allFullStars = document.querySelectorAll('.fa-star');
   let allHalfStars = document.querySelectorAll('.fa-star-half-o');
   for (let star of allFullStars) {
