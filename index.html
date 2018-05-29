@@ -13,9 +13,9 @@
   <main>
     <h1>Memory Game</h1>
     <p>
-      &#x2606;
-      &#x2606;
-      &#x2606;
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <i class="fa fa-star" aria-hidden="true"></i>
       <input class="moveCounter" type="number" value="0" disabled />
       Moves
       <i id="resetButton" class="fa fa-refresh" aria-hidden="true"></i>
@@ -81,6 +81,11 @@
     <h2>Congratulations!</h2>
     <h3>You Won!</h3>
     <p>You won the game in: <input class="moveCounter" type="number" value="0" disabled /> Moves.</p>
+    <button>Play Again</button>
+  </div>
+  <div id="loserContent">
+    <h2>Oh No!</h2>
+    <h3>You lost all your lives!</h3>
     <button>Play Again</button>
   </div>
 </body>

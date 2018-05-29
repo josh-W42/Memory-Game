@@ -38,6 +38,19 @@ main {
   margin-left: 50%;
 }
 
+.resetButtonPress {
+  -webkit-animation: roundabout 0.3s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: roundabout 0.3s; /* Firefox < 16 */
+}
+
+@keyframes roundabout {
+  100% {-webkit-transform: rotate(360deg);}
+}
+/* Firefox < 16 */
+@-moz-keyframes roundabout {
+  100% {-webkit-transform: rotate(360deg);}
+}
+
 #gameContainer {
   flex-direction: row;
   display: flex;
@@ -136,7 +149,14 @@ main {
   display: none;
 }
 
-/* Styling for ipad and similar devices */
+#loserContent {
+  height: 100%;
+  width: 100%;
+  padding-top: 50%;
+  display: none;
+}
+
+/* Styling for ipad or similar devices and Desktop */
 @media screen and (min-width: 426px) {
 
   body {
@@ -152,7 +172,7 @@ main {
 
   .moveCounter {
     font-size: 20pt;
-    width: 30px;
+    width: 50px;
   }
 
   #gameContainer {
@@ -167,6 +187,10 @@ main {
   /* Styling for Post Game  */
 
   #winnerContent {
+    padding-top: 10%;
+  }
+
+  #loserContent {
     padding-top: 10%;
   }
 }
