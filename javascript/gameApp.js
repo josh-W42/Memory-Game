@@ -1,3 +1,9 @@
+let singleDSeconds = 0;
+let doubleDSeconds = 0;
+let minutes = 0;
+let gameRunning;
+let animationNotRunning = true;
+
 function createOrderList(orderList) {
   // A recusive function that will fill the a list with random numbers.
   if(orderList.length === 16) {
@@ -39,30 +45,32 @@ function gameClick(e) {
   // A function that will be called anytime a user clicks on cards.
   // Keeps track of the number of cards that have been selected.
   // And will trigger the end of the game.
-  if(e.target.className === "gameCard") {
-    e.target.classList.toggle('cardReveal');
-  }
-  let selectedCards = document.querySelectorAll('.cardReveal');
-  let numOfSelectedCards = selectedCards.length;
-  if(numOfSelectedCards === 2) {
-    checkCards(selectedCards);
-    let moves = document.querySelector('.moveCounter').value;
-    moves++;
-    document.querySelectorAll('.moveCounter')[0].value = moves;
-    // document.querySelectorAll('.moveCounter')[1].value = moves;
-    let starLossMoves = [13, 15, 19, 21, 24, 26];
-    if (starLossMoves.includes(moves)) {
-      loseLife();
+  //The Bellow if statement should keep users from breaking the game while animations are in affect.
+  if(animationNotRunning) {
+    if(e.target.className === "gameCard") {
+      e.target.classList.toggle('cardReveal');
+    }
+    let selectedCards = document.querySelectorAll('.cardReveal');
+    let numOfSelectedCards = selectedCards.length;
+    if(numOfSelectedCards === 2) {
+      checkCards(selectedCards);
+      let moves = document.querySelector('.moveCounter').value;
+      moves++;
+      document.querySelectorAll('.moveCounter')[0].value = moves;
+      // document.querySelectorAll('.moveCounter')[1].value = moves;
+      let starLossMoves = [13, 15, 19, 21, 24, 26];
+      if (starLossMoves.includes(moves)) {
+        loseLife();
+      }
+    }
+    if(document.querySelectorAll('.correctCards').length === 16) {
+      document.querySelector('main').style.display = 'none';
+      document.querySelector('#modalTrigger').click();
+      document.querySelector('main').style.display = 'none';
+      document.querySelector('.starCounter').value = starCount();
+      document.querySelector('#timer').value = minutes + ":" + doubleDSeconds + "" + singleDSeconds;
     }
   }
-  if(document.querySelectorAll('.correctCards').length === 16) {
-    document.querySelector('main').style.display = 'none';
-    document.querySelector('#modalTrigger').click();
-    document.querySelector('main').style.display = 'none';
-    document.querySelector('.starCounter').value = starCount();
-    document.querySelector('#timer').value = minutes + ":" + doubleDSeconds + "" + singleDSeconds;
-  }
-
 }
 
 function checkCards(selectedCards) {
@@ -79,11 +87,13 @@ function checkCards(selectedCards) {
   else {
     selectedCards[0].classList.toggle('wrongCards');
     selectedCards[1].classList.toggle('wrongCards');
+    animationNotRunning = false;
     setTimeout( function() {
       selectedCards[0].classList.toggle('wrongCards');
       selectedCards[1].classList.toggle('wrongCards');
       selectedCards[0].classList.toggle('cardReveal');
       selectedCards[1].classList.toggle('cardReveal');
+      animationNotRunning = true;
     }, 600);
   }
 }
@@ -174,10 +184,6 @@ function resetGame() {
 }
 
 
-let singleDSeconds = 0;
-let doubleDSeconds = 0;
-let minutes = 0;
-let gameRunning;
 
 function timer() {
   // Timer display.
