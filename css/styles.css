@@ -8,10 +8,10 @@ body, html {
   background-size: contain;
 }
 
-input {
+.moveCounter {
   border: 0px;
   background-color: inherit;
-  width: 10px;
+  width: 20px;
 }
 
 h1 {
@@ -150,7 +150,7 @@ main {
     padding-top: 10%;
   }
 
-  input {
+  .moveCounter {
     font-size: 20pt;
     width: 30px;
   }
