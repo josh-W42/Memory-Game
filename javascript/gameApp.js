@@ -40,19 +40,19 @@ function gameClick(e) {
     let moves = document.querySelector('.moveCounter').value;
     moves++;
     document.querySelectorAll('.moveCounter')[0].value = moves;
-    document.querySelectorAll('.moveCounter')[1].value = moves;
+    // document.querySelectorAll('.moveCounter')[1].value = moves;
+    let starLossMoves = [13, 15, 19, 21, 24, 26];
+    if (starLossMoves.includes(moves)) {
+      loseLife();
+    }
   }
   if(document.querySelectorAll('.correctCards').length === 16) {
     document.querySelector('main').style.display = 'none';
     document.querySelector('#winnerContent').style.display = 'block';
     document.querySelector('.starCounter').value = starCount();
+    document.querySelector('#timer').value = minutes + ":" + doubleDSeconds + "" + singleDSeconds;
   }
-  let emptyStars = document.querySelectorAll('.fa-star-o');
-  // if there are three empty stars, user has lost.
-  if (emptyStars.length === 3) {
-    document.querySelector('main').style.display = 'none';
-    document.querySelector('#loserContent').style.display = 'block';
-  }
+
 }
 
 function checkCards(selectedCards) {
@@ -65,10 +65,8 @@ function checkCards(selectedCards) {
     selectedCards[1].classList.toggle('correctCards');
     selectedCards[0].classList.toggle('cardReveal');
     selectedCards[1].classList.toggle('cardReveal');
-    earnLife();
   }
   else {
-    loseLife();
     selectedCards[0].classList.toggle('wrongCards');
     selectedCards[1].classList.toggle('wrongCards');
     setTimeout( function() {
@@ -81,6 +79,7 @@ function checkCards(selectedCards) {
 }
 
 function starCount() {
+  // Primarily used at end of game for displaying star numbers
   let stars = 0;
   let allFullStars = document.querySelectorAll('.fa-star');
   let allHalfStars = document.querySelectorAll('.fa-star-half-o');
@@ -115,6 +114,7 @@ function loseLife() {
 }
 
 function resetLives() {
+  // This function will reset the number of full stars.
   let allEmptyStars = document.querySelectorAll('.fa-star-o');
   let allHalfStars = document.querySelectorAll('.fa-star-half-o');
   for (let star of allEmptyStars) {
@@ -126,19 +126,18 @@ function resetLives() {
 }
 
 function playAgain() {
-  // Resets the two move counters.
+  // Reset Game data
   resetGame();
   // Reseting the display.
   document.querySelector('main').style.display = 'block';
   document.querySelector('#winnerContent').style.display = 'none';
-  document.querySelector('#loserContent').style.display =  'none';
 }
 
 function resetGame(e) {
   // Should reset all changable parts of the game. ie flip all cards and
   // reposition them. Then reset move counters.
   document.querySelectorAll('.moveCounter')[0].value = 0;
-  document.querySelectorAll('.moveCounter')[1].value = 0;
+  // document.querySelectorAll('.moveCounter')[1].value = 0;
   document.querySelector('.starCounter').value = 0;
   // These couple of lines trigger the rotating reset button animation.
   document.querySelector('#resetButton').classList.toggle('resetButtonPress');
@@ -153,33 +152,56 @@ function resetGame(e) {
   for (let card of allCorrectCards) {
     card.classList.toggle('correctCards');
   }
+  resetTimer();
+  // Timer reset
   resetLives();
   // Lives reset
   setGame();
   runGame();
 }
 
-function earnLife() {
-  // To make the game easier, users can now earn lives after every correct guess.
-  let halfStar = document.querySelectorAll('.fa-star-half-o');
-  if (halfStar.length > 0) {
-    halfStar[0].className = 'fa fa-star';
+
+let singleDSeconds = 0;
+let doubleDSeconds = 0;
+let minutes = 0;
+
+function timer() {
+  // Timer display.
+  document.querySelector('.timer').value = minutes + ":" + doubleDSeconds + "" + singleDSeconds;
+  setTimeout(addTime, 1000)
+}
+
+function addTime() {
+  // This function insures that the correct time will be displays.
+  if (singleDSeconds >= 9) {
+    singleDSeconds = 0;
+    doubleDSeconds++;
+    if(doubleDSeconds >= 6) {
+      doubleDSeconds = 0;
+      minutes++;
+    }
   }
   else {
-    let allEmptyStars = document.querySelectorAll('.fa-star-o');
-    allEmptyStars[0].className = 'fa fa-star-half-o';
+    singleDSeconds++;
   }
+  timer();
+}
+
+function resetTimer() {
+  singleDSeconds = 0;
+  doubleDSeconds = 0;
+  minutes = 0;
 }
 
 function runGame() {
   // Mainly just adds event listeners, called every game reset or intialization.
   let game = document.querySelector('#gameContainer');
-  let playButtons = document.querySelectorAll('button');
+  let playButton = document.querySelector('button');
   let reset = document.querySelector('#resetButton');
   game.addEventListener('click', gameClick);
-  playButtons[0].addEventListener('click', playAgain);
-  playButtons[1].addEventListener('click', playAgain);
+  playButton.addEventListener('click', playAgain);
   reset.addEventListener('click', resetGame);
+  timer();
 }
 
 setGame();

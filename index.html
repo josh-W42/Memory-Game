@@ -18,6 +18,7 @@
       <i class="fa fa-star" aria-hidden="true"></i>
       <input class="moveCounter" type="number" value="0" disabled />
       Moves
+      <input class="timer" type="datetime" value="0:00" disabled />
       <i id="resetButton" class="fa fa-refresh" aria-hidden="true"></i>
     </p>
     <!-- The grid will have four rows and four columns -->
@@ -80,12 +81,7 @@
   <div id="winnerContent">
     <h2>Congratulations!</h2>
     <h3>You Won!</h3>
-    <p>You won the game in: <input class="moveCounter" type="number" value="0" disabled /> moves and <input class="starCounter" type="number" value="0" disabled /> lives left.</p>
-    <button>Play Again</button>
-  </div>
-  <div id="loserContent">
-    <h2>Oh No!</h2>
-    <h3>You lost all your lives!</h3>
+    <p>You won the game in a time of <input id="timer" type="datetime" value="0" disabled /> and with <input class="starCounter" type="number" value="0" disabled /> stars pieces left.</p>
     <button>Play Again</button>
   </div>
 </body>

@@ -12,9 +12,29 @@ body, html {
   border: 0px;
   background-color: inherit;
   width: 20px;
+  color: black;
+}
+
+.timer {
+  border: 0px;
+  background-color: inherit;
+  width: 60px;
+  font-weight: bold;
+  font-size: 20pt;
+  color: black;
+}
+
+#timer {
+  border: 0px;
+  background-color: inherit;
+  font-weight: bold;
+  width: 60px;
+  font-size: 20pt;
+  color: black;
 }
 
 .starCounter {
+  color: black;
   border: 0px;
   background-color: inherit;
   width: 20px;
@@ -45,7 +65,7 @@ main {
 }
 
 #resetButton {
-  margin-left: 50%;
+  margin-left: 20%;
 }
 
 .resetButtonPress {
@@ -170,13 +190,6 @@ main {
   display: none;
 }
 
-#loserContent {
-  height: 100%;
-  width: 100%;
-  padding-top: 50%;
-  display: none;
-}
-
 /* Styling for ipad or similar devices and Desktop */
 @media screen and (min-width: 426px) {
 
@@ -216,9 +229,6 @@ main {
     padding-top: 10%;
   }
 
-  #loserContent {
-    padding-top: 10%;
-  }
 }
 
 @media screen and (min-width: 1025px) {
