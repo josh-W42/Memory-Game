@@ -24,6 +24,15 @@ function setGame() {
   for (let i = 0; i < gameCardList.length; i++) {
     gameCardList[i].style.order = orderList[i].toString();
   }
+  // Mainly just adds event listeners, called every game reset or intialization.
+  let game = document.querySelector('#gameContainer');
+  let playButtonStartGame = document.querySelectorAll('button')[0];
+  let playButtonEndGame = document.querySelectorAll('button')[1];
+  let reset = document.querySelector('#resetButton');
+  game.addEventListener('click', gameClick);
+  playButtonStartGame.addEventListener('click', runGame)
+  playButtonEndGame.addEventListener('click', playAgain);
+  reset.addEventListener('click', resetGame);
 }
 
 function gameClick(e) {
@@ -133,7 +142,7 @@ function playAgain() {
   document.querySelector('#winnerContent').style.display = 'none';
 }
 
-function resetGame(e) {
+function resetGame() {
   // Should reset all changable parts of the game. ie flip all cards and
   // reposition them. Then reset move counters.
   document.querySelectorAll('.moveCounter')[0].value = 0;
@@ -152,57 +161,68 @@ function resetGame(e) {
   for (let card of allCorrectCards) {
     card.classList.toggle('correctCards');
   }
-  resetTimer();
+  let allCards = document.querySelectorAll('.gameCard');
+  for (let card of allCards) {
+    card.style.display = 'none';
+  }
+  document.querySelector('#gameStartScreen').style.display = 'block';
+  resetTimer()
   // Timer reset
   resetLives();
   // Lives reset
   setGame();
-  runGame();
 }
 
 
 let singleDSeconds = 0;
 let doubleDSeconds = 0;
 let minutes = 0;
+let gameRunning;
 
 function timer() {
   // Timer display.
-  document.querySelector('.timer').value = minutes + ":" + doubleDSeconds + "" + singleDSeconds;
-  setTimeout(addTime, 1000)
+  if(gameRunning) {
+    document.querySelector('.timer').value = minutes + ":" + doubleDSeconds + "" + singleDSeconds;
+    setTimeout(addTime, 1000)
+  }
 }
 
 function addTime() {
   // This function insures that the correct time will be displays.
-  if (singleDSeconds >= 9) {
-    singleDSeconds = 0;
-    doubleDSeconds++;
-    if(doubleDSeconds >= 6) {
-      doubleDSeconds = 0;
-      minutes++;
+  if(gameRunning){
+    if (singleDSeconds >= 9) {
+      singleDSeconds = 0;
+      doubleDSeconds++;
+      if(doubleDSeconds >= 6) {
+        doubleDSeconds = 0;
+        minutes++;
+      }
     }
+    else {
+      singleDSeconds++;
+    }
+    timer();
   }
-  else {
-    singleDSeconds++;
-  }
-  timer();
 }
 
+
 function resetTimer() {
+  document.querySelector('.timer').value = "0:00";
   singleDSeconds = 0;
   doubleDSeconds = 0;
   minutes = 0;
+  gameRunning = false;
 }
 
 function runGame() {
   // Mainly just adds event listeners, called every game reset or intialization.
-  let game = document.querySelector('#gameContainer');
-  let playButton = document.querySelector('button');
-  let reset = document.querySelector('#resetButton');
-  game.addEventListener('click', gameClick);
-  playButton.addEventListener('click', playAgain);
-  reset.addEventListener('click', resetGame);
+  document.querySelector('#gameStartScreen').style.display = 'none';
+  let allCards = document.querySelectorAll('.gameCard');
+  for (let card of allCards) {
+    card.style.display = 'block';
+  }
+  gameRunning = true;
   timer();
 }
 
 setGame();
-runGame();
