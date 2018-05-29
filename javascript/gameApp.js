@@ -45,6 +45,7 @@ function gameClick(e) {
   if(document.querySelectorAll('.correctCards').length === 16) {
     document.querySelector('main').style.display = 'none';
     document.querySelector('#winnerContent').style.display = 'block';
+    document.querySelector('.starCounter').value = starCount();
   }
   let emptyStars = document.querySelectorAll('.fa-star-o');
   // if there are three empty stars, user has lost.
@@ -64,6 +65,7 @@ function checkCards(selectedCards) {
     selectedCards[1].classList.toggle('correctCards');
     selectedCards[0].classList.toggle('cardReveal');
     selectedCards[1].classList.toggle('cardReveal');
+    earnLife();
   }
   else {
     loseLife();
@@ -78,16 +80,37 @@ function checkCards(selectedCards) {
   }
 }
 
+function starCount() {
+  let stars = 0;
+  let allFullStars = document.querySelectorAll('.fa-star');
+  let allHalfStars = document.querySelectorAll('.fa-star-half-o');
+  for (let star of allFullStars) {
+    stars = stars + 2;
+  }
+  for (let star of allHalfStars) {
+    stars = stars + 1;
+  }
+  return stars;
+}
+
 function loseLife() {
   // This function will first check if there are half stars, if so, they
   // will be empty. If no helf stars then full stars become half stars.
   let halfStar = document.querySelectorAll('.fa-star-half-o');
   if (halfStar.length > 0) {
     halfStar[0].className = 'fa fa-star-o';
+    halfStar[0].classList.toggle('lostALife');
+    setTimeout(function() {
+      halfStar[0].classList.toggle('lostALife');
+    }, 400);
   }
   else {
     let allFullStars = document.querySelectorAll('.fa-star');
     allFullStars[allFullStars.length - 1].className = 'fa fa-star-half-o';
+    allFullStars[allFullStars.length - 1].classList.toggle('lostALife');
+    setTimeout(function() {
+      allFullStars[allFullStars.length - 1].classList.toggle('lostALife');
+    }, 400);
   }
 }
 
@@ -116,6 +139,7 @@ function resetGame(e) {
   // reposition them. Then reset move counters.
   document.querySelectorAll('.moveCounter')[0].value = 0;
   document.querySelectorAll('.moveCounter')[1].value = 0;
+  document.querySelector('.starCounter').value = 0;
   // These couple of lines trigger the rotating reset button animation.
   document.querySelector('#resetButton').classList.toggle('resetButtonPress');
   setTimeout(function() {
@@ -133,6 +157,18 @@ function resetGame(e) {
   // Lives reset
   setGame();
   runGame();
+}
+
+function earnLife() {
+  // To make the game easier, users can now earn lives after every correct guess.
+  let halfStar = document.querySelectorAll('.fa-star-half-o');
+  if (halfStar.length > 0) {
+    halfStar[0].className = 'fa fa-star';
+  }
+  else {
+    let allEmptyStars = document.querySelectorAll('.fa-star-o');
+    allEmptyStars[0].className = 'fa fa-star-half-o';
+  }
 }
 
 function runGame() {
